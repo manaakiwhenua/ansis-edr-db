@@ -1,0 +1,3 @@
+create schema if not exists data authorization edr_wheel; -- environmental data
+comment on schema data
+    is 'The `data` schema holds entity (''real-world'' things), property (of entities) and relationship (between entities) tables. This schema is an Entity Attribute Value (EAV) database (see [edr-dbms-design-principles](./edr-dbms-design-principles.md)) for details. EAV databases are somewhat opaque to anyone browsing them, essentially being a rows of UUIDs for foreign keys to `cm` tables. To offset this, each table has a corresponding view that presents it in a human friendly way by getting labels from the appropriate definition table. The views have the same name as the table they present but suffixed by ''__view'', e.g `data.entity__view` for `data.entity`.';

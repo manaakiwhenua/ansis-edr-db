@@ -1,0 +1,3 @@
+create schema if not exists cm authorization edr_wheel;  -- definitions
+comment on schema cm
+    is 'The `cm` schema holds tables, views and functions used to provide definitions from classes and properties (attributes and associations) in class models. (Many tables have a corresponding view that presents the table in a human friendly way, for example by getting a label from a related table, rather than displaying the foreign key UUID. The views have the same name as the table they present but suffixed by ''__view'', e.g `cm.class__view` for `cm.class`.';

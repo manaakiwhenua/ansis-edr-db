@@ -1,0 +1,3 @@
+create schema if not exists voc authorization edr_wheel;  -- definitions
+comment on schema voc
+    is 'The `voc` schema holds tables, views and functions used to provide definitions for schemas and collections of concepts used for controlled vocabularies. (Some tables have a corresponding view that presents the table in a human friendly way, for example by getting a label from a related table, rather than displaying the foreign key UUID. The views have the same name as the table they present but suffixed by ''__view'', e.g `voc.concept__view` for `voc.concept`.)';

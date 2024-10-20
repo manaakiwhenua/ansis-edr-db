@@ -1,0 +1,3 @@
+-- edr_edit group role
+create role edr_edit inherit bypassrls nosuperuser nocreatedb nocreaterole noreplication nologin;
+comment on role edr_edit is 'The data editor with control of table content (can insert, update and delete records). Can access views and functions that return data or modify records. Group role only, usage rights may be granted to login roles authenticated using PAM. Because it is not subject to role level security, the role should only be granted to managed system users that manage data uploads or fundamental data quality.';

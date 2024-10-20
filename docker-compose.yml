@@ -1,0 +1,25 @@
+services:
+
+  ansis-edr-db:
+    build: .
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - 5445:5432
+    healthcheck:
+      test: ["CMD", "psql", "-d", "edr", "-h", "127.0.0.1", "-c", "SELECT 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+      start_period: 40s
+    environment:
+      - POSTGRES_DBNAME=postgres
+      - POSTGRES_USER=postgres
+      - PGUSER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - ANSIS_INIT_DATABASE=${ANSIS_INIT_DATABASE:-1}
+    restart: unless-stopped
+
+volumes:
+  pg_data:

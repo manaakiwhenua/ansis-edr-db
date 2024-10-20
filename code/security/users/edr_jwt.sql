@@ -1,0 +1,3 @@
+-- edr_jwt group role
+create role edr_jwt inherit nosuperuser nobypassrls nocreatedb nocreaterole noreplication nologin;
+comment on role edr_jwt is 'The role granted to client users (e.g. an API) authenticated by the MWLR Authentication Services and providing a JSON Web Token. This token must include a operatorId UUID key. Read/write access to DB objects is granted according to Row Level Security policies set for each table.';
