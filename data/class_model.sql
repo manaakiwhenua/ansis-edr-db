@@ -1,8 +1,8 @@
 -- drop view if exists working.class_model;
 create or replace view working.class_model as
 select
-    '3908e757-e482-4412-8759-ec6ef969482c' as id,
-    '54c83d3f-3314-438f-a5b3-54fd34480bdb' as register_id,
+    '3908e757-e482-4412-8759-ec6ef969482c'::uuid as id,
+    '54c83d3f-3314-438f-a5b3-54fd34480bdb'::uuid as register_id,
     'ansis' as identifier,
     'https://anzsoil.org/def/au/domain/' as base_uri,
     'ansis' as namespace_prefix,
