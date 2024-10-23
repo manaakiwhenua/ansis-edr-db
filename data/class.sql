@@ -1,16 +1,16 @@
--- drop view if exists working.class;
+-- drop view if exists working.class cascade;
 create or replace view working.class as
 select
     defs.obj ->> '@id' as id,
-    '3908e757-e482-4412-8759-ec6ef969482c' as class_model_id,
+    '3908e757-e482-4412-8759-ec6ef969482c'::uuid as class_model_id,
     defs.key as identifier,
     false as abstract,
     defs.obj ->> 'title' as label,
     defs.obj ->> 'description' as definition,
     defs.obj ->> '$comment' as editorial_note,
-    null as rdf_match,
-    null as see_also,
-    null as root_class,
+    null::text[] as rdf_match,
+    null::text[] as see_also,
+    false as root_class,
     'edr-entity' as system__type_id,
     null as system__label_template,
     null as system__default_location_attribute_id,
@@ -26,15 +26,15 @@ where
 union all
 select
     _id as id,
-    '3908e757-e482-4412-8759-ec6ef969482c' as class_model_id,
-    defs.key as identifier,
+    '3908e757-e482-4412-8759-ec6ef969482c'::uuid as class_model_id,
+    concat(defs.key, '[', _id, ']') as identifier,
     false as abstract,
-    defs.obj ->> 'title' as label,
+    concat(defs.obj ->> 'title', ' [', _id, ']') as label,
     defs.obj ->> 'description' as definition,
     defs.obj ->> '$comment' as editorial_note,
-    null as rdf_match,
-    null as see_also,
-    null as root_class,
+    null::text[] as rdf_match,
+    null::text[] as see_also,
+    false as root_class,
     'edr-entity' as system__type_id,
     null as system__label_template,
     null as system__default_location_attribute_id,
