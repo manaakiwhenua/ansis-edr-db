@@ -11,22 +11,24 @@ create or replace view working.concept_scheme as
             aj.file_name = 'enum.json'
     )
     select
-        defs.obj ->> '@id' as id,
-        'e3f68055-82bf-4e3d-a30c-3bf3eaf4eb1d' as register_id,
+        defs.key as id,
+        'e3f68055-82bf-4e3d-a30c-3bf3eaf4eb1d'::uuid as register_id,
         defs.obj ->> 'title' as preferred_label,
         defs.key as notation,
         defs.obj ->> 'description' as description,
         defs.obj ->> '$comment' as editorial_note,
-        case when cp.uri is null
-             then defs.obj ->> '@id'
-             else concat(cp.uri,split_part(defs.obj ->> '@id',':',2))
-        end as source,
+        array[
+            case when cp.uri is null
+                 then defs.obj ->> '@id'
+                 else concat(cp.uri,split_part(defs.obj ->> '@id',':',2))
+            end
+        ] as source,
         case when cp.uri ~ 'anzsoil.org'
              then array['https://github.com/ANZSoilData/']
         end as see_also,
         'en' as system__language,
         '${preferred_label}' as system__label_template,
-        null as system__tag
+        null::text[] as system__tag
     from
         working.ansis_json aj,
         jsonb_each(aj.file -> '$defs') defs(key,obj)
