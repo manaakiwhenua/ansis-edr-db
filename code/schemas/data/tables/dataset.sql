@@ -2,16 +2,16 @@
 create table
 	data.dataset (
 	    id uuid default gen_random_uuid() not null,
-        register_id uuid not null,
-	    class_model_id uuid not null,
-	    class_id text not null,
+        register_id uuid default 'a7187fec-1098-4c4d-a2bf-9d5544deeaa2'::uuid not null,
+	    class_model_id uuid null,
+	    class_id text null,
 	    default_label text null,
 	    dataset_id uuid null,
 	    constraint pk_dataset primary key (id),
-	    constraint fk_dataset_register foreign key (register_id)
-	        references reg.register (id)
-            on delete restrict on update cascade
-            deferrable initially deferred,
+	    -- constraint fk_dataset_register foreign key (register_id)
+	    --    references reg.register (id)
+        --    on delete restrict on update cascade
+        --    deferrable initially deferred,
 	    -- constraint fk_dataset__class_model foreign key (class_model_id)
 	    --     references cm.class_model (id)
         --     on delete restrict on update cascade
