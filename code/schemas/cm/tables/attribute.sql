@@ -3,7 +3,7 @@ create table cm.attribute (
 	    id text not null,
 	    class_model_id uuid not null,
 	    identifier text not null,
-        data_type_id text not null,
+        data_type_id text null,
         abstract boolean default false not null,
         derived boolean default false not null,
 	    label text null,
@@ -14,16 +14,16 @@ create table cm.attribute (
         constraints jsonb null,
         system__type_id text not null,
 	    constraint pk_attribute primary key (id),
-	    constraint uq_attribute__identifier unique (class_model_id, identifier)
-            deferrable initially deferred,
+-- 	    constraint uq_attribute__identifier unique (class_model_id, identifier)
+--             deferrable initially deferred,
 	    constraint fk_attribute__class_model
             foreign key (class_model_id) references cm.class_model (id)
             on delete restrict on update cascade
             deferrable initially deferred,
-        constraint fk_attribute__data_type
-            foreign key (data_type_id) references cm.system__type__data_type (id)
-            on delete restrict on update cascade
-            deferrable initially deferred,
+--         constraint fk_attribute__data_type
+--             foreign key (data_type_id) references cm.system__type__data_type (id)
+--             on delete restrict on update cascade
+--             deferrable initially deferred,
 	    constraint fk_attribute__system__type
             foreign key (system__type_id) references cm.system__type__attribute (id)
             on delete restrict on update cascade
@@ -62,8 +62,8 @@ comment on column cm.attribute.constraints
     is 'The default constraints on the value of an instance of a attribute. Managed as a JSON object as applicable constraints vary with the attribute type''s range.';
 comment on column cm.attribute.system__type_id
     is 'The system level type of the attribute. This cannot be changed once the attribute is referenced by `data.*_attribute|observation|measurement` tables.';
-comment on constraint uq_attribute__identifier on cm.attribute
-    is 'Ensures that the attribute identifier is unique within the class model.';
+-- comment on constraint uq_attribute__identifier on cm.attribute
+--     is 'Ensures that the attribute identifier is unique within the class model.';
 
 alter table cm.class add constraint fk_class__system__default_location_attribute
     foreign key (system__default_location_attribute_id) references cm.attribute (id)

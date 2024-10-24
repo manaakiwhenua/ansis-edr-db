@@ -18,9 +18,9 @@ create table cm.association (
         system__type_id text not null,
 	    constraint pk_association
 	        primary key (id),
-	    constraint uq_association__identifier
-	        unique (class_model_id, identifier)
-            deferrable initially deferred,
+-- 	    constraint uq_association__identifier
+-- 	        unique (class_model_id, identifier)
+--             deferrable initially deferred,
 	    constraint fk_association__class_model
             foreign key (class_model_id) references cm.class_model (id)
             on delete restrict on update cascade
@@ -76,5 +76,5 @@ comment on column cm.association.constraints
     is 'The default constraints on the value of an instance of a association_type. Managed as a JSON object as applicable constraints vary with the association type''s range.';
 comment on column cm.association.system__type_id
     is 'The system level type of the association. This cannot be changed once the attribute is referenced by `data.*_aggregation|association` tables.';
-comment on constraint uq_association__identifier on cm.association
-    is 'Ensures that the association identifier is unique within the class model.';
+-- comment on constraint uq_association__identifier on cm.association
+--     is 'Ensures that the association identifier is unique within the class model.';
