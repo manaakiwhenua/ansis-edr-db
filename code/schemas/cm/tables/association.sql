@@ -21,18 +21,18 @@ create table cm.association (
 -- 	    constraint uq_association__identifier
 -- 	        unique (class_model_id, identifier)
 --             deferrable initially deferred,
-	    constraint fk_association__class_model
-            foreign key (class_model_id) references cm.class_model (id)
-            on delete restrict on update cascade
-            deferrable initially deferred,
-        constraint fk_association__source_class
-            foreign key (source_class_id) references cm.class (id)
-                on delete restrict on update cascade
-                deferrable initially deferred,
-        constraint fk_association__target_class
-            foreign key (target_class_id) references cm.class (id)
-                on delete restrict on update cascade
-                deferrable initially deferred,
+-- 	    constraint fk_association__class_model
+--             foreign key (class_model_id) references cm.class_model (id)
+--             on delete restrict on update cascade
+--             deferrable initially deferred,
+--         constraint fk_association__source_class
+--             foreign key (source_class_id) references cm.class (id)
+--                 on delete restrict on update cascade
+--                 deferrable initially deferred,
+--         constraint fk_association__target_class
+--             foreign key (target_class_id) references cm.class (id)
+--                 on delete restrict on update cascade
+--                 deferrable initially deferred,
 	    constraint fk_association__system__type
             foreign key (system__type_id) references cm.system__type__association (id)
             on delete restrict on update cascade
