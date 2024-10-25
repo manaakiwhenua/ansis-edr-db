@@ -105,4 +105,15 @@ edr,schemas/auth/functions,operator__register_access.sql
 edr,schemas/auth/functions,operator__entity_access.sql
 edr,schemas/auth/functions,operator__object_access.sql
 edr,security/policies,row-level-security.sql
+edr,schemas/working/views,ansis_json.sql
+edr,schemas/working/views,concept_scheme.sql
+edr,schemas/working/views,concept.sql
+edr,schemas/working/views,class_model.sql
+edr,schemas/working/views,class.sql
+edr,schemas/working/views,property_domain.sql
+edr,schemas/working/views,association.sql
+edr,schemas/working/views,attribute.sql
+edr,schemas/working/views,attribute_domain.sql
 edr,scripts/post-deployment,insert-reg.sql
+edr,scripts/post-deployment,insert-voc.sql
+edr,scripts/post-deployment,insert-cm.sql
